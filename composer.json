@@ -1,0 +1,27 @@
+{
+    "name": "robinbrackez/password-expiration-bundle",
+    "description": "Symfony bundle to enforce users to change their password periodically.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": ["symfony","password", "expiration", "security", "easyadmin"],
+    "homepage": "https://www.github.com/robinbrackez/password-expiration-bundle",
+    "require": {
+        "php": ">=8.1",
+        "symfony/framework-bundle": "^5.4|^6.0",
+        "symfony/security-bundle": "^5.4|^6.0",
+        "symfony/security-core": "^5.4|^6.0",
+        "doctrine/orm": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "RobinBrackez\\PasswordExpirationBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Robin Brackez",
+            "email": "robin.brackez@gmail.com",
+            "homepage": "https://www.developed.be"
+        }
+    ]
+}

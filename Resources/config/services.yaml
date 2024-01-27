@@ -1,0 +1,23 @@
+parameters:
+    changePasswordRouteName: 'change_password'
+    passwordMaxDaysOld: 30
+    easyadmin.changePasswordControllerName: null
+    easyadmin.changePasswordControllerActionName: null
+
+services:
+    RobinBrackez\PasswordExpirationBundle\EventListener\PasswordExpiredListener:
+        autowire: true
+        arguments:
+            $security: '@security.helper'
+            $changePasswordRouteName: '%changePasswordRouteName%'
+            $passwordMaxDaysOld: '%passwordMaxDaysOld%'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    RobinBrackez\PasswordExpirationBundle\Service\EasyAdminWrapper:
+        autowire: true
+        arguments:
+            $changePasswordControllerName: '%easyadmin.changePasswordControllerName%'
+            $changePasswordControllerActionName: '%easyadmin.changePasswordControllerActionName%'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
