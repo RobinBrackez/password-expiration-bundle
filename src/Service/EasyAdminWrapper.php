@@ -2,7 +2,8 @@
 
 namespace RobinBrackez\PasswordExpirationBundle\Service;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 /**
  * EasyAdmin is optional. This is a wrapper class to make sure we don't get errors when EasyAdmin is not installed.
@@ -12,14 +13,13 @@ class EasyAdminWrapper
     private mixed $adminUrlGenerator = null;
 
     public function __construct(
-        private ContainerInterface $container,
+        private ContainerBagInterface $container,
         private ?string $changePasswordControllerName = null,
         private ?string $changePasswordCrudActionName = null,
     ) {
         if (!$this->isEasyAdminBundleAvailable()) {
             return;
         }
-        $this->adminUrlGenerator = $this->container->get('EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator');
         if ($this->adminUrlGenerator !== null) {
             throw new \LogicException("Couldn't find AdminUrlGenerator in EasyAdminBundle. Do you have the latest version of EasyAdminBundle installed? Version 2 not supported.");
         }
@@ -31,9 +31,14 @@ class EasyAdminWrapper
         }
     }
 
+    public function setAdminUrlGenerator(AdminUrlGenerator $adminUrlGenerator): void
+    {
+        $this->adminUrlGenerator = $adminUrlGenerator;
+    }
+
     public function isEasyAdminBundleAvailable(): bool
     {
-        return array_key_exists('EasyAdminBundle', $this->container->getParameter('kernel.bundles'));
+        return array_key_exists('EasyAdminBundle', $this->container->get('kernel.bundles'));
     }
 
     public function changePasswordIsCurrentRoute($queryString): bool

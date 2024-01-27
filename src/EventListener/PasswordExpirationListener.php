@@ -4,12 +4,12 @@ namespace RobinBrackez\PasswordExpirationBundle\EventListener;
 
 use RobinBrackez\PasswordExpirationBundle\Service\EasyAdminWrapper;
 use RobinBrackez\PasswordExpirationBundle\User\PasswordExpirableInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\Routing\Router;
 
 class PasswordExpirationListener
 {
@@ -17,7 +17,7 @@ class PasswordExpirationListener
         private readonly Security         $security,
         private readonly RequestStack     $requestStack,
         private readonly EasyAdminWrapper $easyAdminWrapper,
-        private readonly Router           $router,
+        private readonly RouterInterface           $router,
         private readonly string           $changePasswordRouteName,
         private readonly int              $passwordMaxDaysOld = 30,
     ) {

@@ -16,6 +16,12 @@ It doesn't support multiple login methods, so sites that have different login pa
 
 `composer req robinbrackez/password-expiration-bundle`
 
+Add the bundle to `config/bundles.php`
+
+```
+    RobinBrackez\PasswordExpirationBundle\PasswordExpirationBundle::class => ['all' => true],
+```
+
 ### Add to your User class:
 
 * `implements RobinBrackez\PasswordExpirationBundle\User\PasswordExpirableInterface`
@@ -32,6 +38,14 @@ class User implements PasswordExpirableInterface {
 ```
 
 Create and run **migrations** to add the `password_changed_at` field to the User table.
+
+Within your (controller) method that changes the password you have to set:
+
+```
+$user->setPasswordChangedAt(new \DateTime())
+```
+If you don't do this, you'll keep on seeing the change password screen because the timestamp is not updated.
+
 
 ### Config:
 
