@@ -54,10 +54,10 @@ There needs to be a property called 'password' inside your User entity, this is 
 
 ```
 parameters:
-    - changePasswordRouteName: 'app_change_password'
-    - passwordMaxDaysOld: 30  # every month 
-    - easyadmin.changePasswordControllerName: 'App\Controller\Admin\UserCrudController'
-    - easyadmin.changePasswordControllerActionName: 'changePassword' # this is the method name of the changePasswordRouteName
+    changePasswordRouteName: 'app_change_password'
+    passwordMaxDaysOld: 30  # every month 
+    easyadmin.changePasswordControllerName: 'App\Controller\Admin\UserCrudController'
+    easyadmin.changePasswordControllerActionName: 'changePassword' # this is the method name of the changePasswordRouteName
 ```
 
 If you don't have EasyAdmin, omit the easyadmin related parameters
