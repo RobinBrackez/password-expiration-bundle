@@ -30,6 +30,8 @@ Add the bundle to `config/bundles.php`
 **For instance:**
 
 ```
+namespace App\Entity\User;
+
 use RobinBrackez\PasswordExpirationBundle\User\PasswordExpirableInterface;
 use RobinBrackez\PasswordExpirationBundle\User\PasswordExpirableTrait;
 
