@@ -2,7 +2,7 @@
 
 ## About
 
-Symfony bundle to enforce users to change their password every X days.
+Symfony bundle to enforce users to change their password every X days, and keeps track when the password was changed.
 
 The bundle won't allow to user to navigate to any page unless they change their password.
 
@@ -39,13 +39,7 @@ class User implements PasswordExpirableInterface {
 
 Create and run **migrations** to add the `password_changed_at` field to the User table.
 
-Within your (controller) method that changes the password you have to set:
-
-```
-$user->setPasswordChangedAt(new \DateTime())
-```
-If you don't do this, you'll keep on seeing the change password screen because the timestamp is not updated.
-
+There needs to be a property called 'password' inside your User entity, this is necessary for the listener to check on.
 
 ### Config:
 
